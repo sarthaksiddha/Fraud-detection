@@ -1,0 +1,45 @@
+# Model training configuration
+
+training:
+  test_size: 0.2
+  random_state: 42
+  class_weight: balanced
+
+models:
+  random_forest:
+    enabled: true
+    params:
+      n_estimators: 100
+      max_depth: 10
+      min_samples_split: 5
+      class_weight: balanced
+      n_jobs: -1
+      random_state: 42
+    
+  gradient_boosting:
+    enabled: true
+    params:
+      n_estimators: 100
+      max_depth: 5
+      learning_rate: 0.1
+      random_state: 42
+
+feature_importance:
+  enabled: true
+  top_n_features: 10
+
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1
+    - auc_roc
+  threshold_tuning:
+    enabled: true
+    optimize_for: f1
+
+model_persistence:
+  save_dir: models
+  save_format: joblib
+  save_metadata: true

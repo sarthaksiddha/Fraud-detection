@@ -1,0 +1,40 @@
+# Monitoring configuration
+
+kafka:
+  bootstrap_servers: localhost:9092
+  topics:
+    predictions: fraud_predictions
+    alerts: fraud_alerts
+
+redis:
+  host: localhost
+  port: 6379
+  db: 0
+
+prometheus:
+  port: 8001
+  metrics:
+    - name: fraud_predictions_total
+      type: counter
+      description: Total number of fraud predictions
+    - name: fraud_ratio
+      type: gauge
+      description: Ratio of fraudulent transactions
+    - name: prediction_latency_seconds
+      type: histogram
+      description: Prediction latency in seconds
+    - name: feature_drift
+      type: gauge
+      description: Feature drift score
+
+drift_detection:
+  window_size: 1000
+  min_samples: 100
+  threshold: 2.0
+
+alerts:
+  latency_threshold: 1.0  # seconds
+  drift_threshold: 2.0    # standard deviations
+  endpoints:
+    slack: ${SLACK_WEBHOOK_URL}
+    email: ${ALERT_EMAIL}

@@ -1,0 +1,42 @@
+# Feature engineering configuration
+
+features:
+  temporal:
+    - hour_of_day
+    - is_weekend
+    - day_of_week
+    - month
+
+  transaction:
+    - amount
+    - currency
+    - country
+    - merchant_category
+
+  aggregation_windows:
+    - window: 1h
+      features:
+        - transaction_count
+        - total_amount
+        - avg_amount
+        - international_ratio
+    - window: 24h
+      features:
+        - transaction_count
+        - total_amount
+        - avg_amount
+        - std_amount
+        - international_ratio
+
+scaling:
+  method: standard
+  features_to_scale:
+    - amount
+    - transaction_frequency_1h
+    - transaction_frequency_24h
+    - average_amount_24h
+    - amount_std_24h
+
+feature_selection:
+  method: importance
+  n_features: 10
