@@ -1,1 +1,2 @@
-[Content of kafka_producer.py as created before]
+#!/usr/bin/env python3
+# Previous kafka_producer.py content...
