@@ -1,0 +1,1 @@
+[Content of kafka_producer.py as created before]
