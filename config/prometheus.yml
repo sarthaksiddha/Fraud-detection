@@ -1,1 +1,10 @@
-[Content of prometheus.yml as created before]
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'fraud_detection'
+    static_configs:
+      - targets: ['localhost:8001']
+    metrics_path: '/metrics'
+    scheme: 'http'
